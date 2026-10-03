@@ -1,5 +1,7 @@
 {
  "rows": [
-  {"num":1,"nombre":"Luis Alberto Garcia","tarea":"AN","grupo":"6","genero":"V","inactivo":false,"salud":false,"asign":["PRESIDENCIA","ORACION","DISCURSO_TESORO_BIBLIA","NECESIDADES_CONGREGACION","ESTUDIO_BIBLICO"]}
+  {"num":1,"nombre":"Luis Alberto Garcia","tarea":"AN","grupo":"6","genero":"V","inactivo":false,"salud":false,"asign":["PRESIDENCIA","ORACION","DISCURSO_TESORO_BIBLIA","NECESIDADES_CONGREGACION","ESTUDIO_BIBLICO"]},
+  {"num":2,"nombre":"Eduardo Benavides","tarea":"AN","grupo":"5","genero":"V","inactivo":false,"salud":false,"asign":["PRESIDENCIA","ORACION","DISCURSO_TESORO_BIBLIA","PERLAS_ESCONDIDAS","NECESIDADES_CONGREGACION","ESTUDIO_BIBLICO","LECTOR_ESTUDIO_BIBLICO"]},
+  {"num":3,"nombre":"Marcelo Ramirez","tarea":"SM","grupo":"2","genero":"V","inactivo":false,"salud":false,"asign":["PERLAS_ESCONDIDAS","LECTURA_BIBLIA","MM_2"]}
  ]
 }
