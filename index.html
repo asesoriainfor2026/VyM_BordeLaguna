@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Registro de hermanos de la Congregación Bordelaguna: grupos, tareas, disponibilidad y asignaciones para la reunión Vida y Ministerio.">
+<meta name="theme-color" content="#1B6B5B" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101412" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Congregación Bordelaguna — Registro de Hermanos">
+<meta property="og:description" content="Registro de hermanos, grupos y asignaciones de la Congregación Bordelaguna.">
+<meta property="og:type" content="website">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Bordelaguna">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231B6B5B'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='white'%3ECB%3C/text%3E%3C/svg%3E">
+<title>Congregación Bordelaguna — Registro de Hermanos</title>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('hermanos.theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F4F0;--card:#FFFEFB;--ink:#1A221E;--soft:#4A544E;--line:#E4E6DF;--fill:#F0F1EC;
+    --brand:#1B6B5B;--brand-2:#145247;--brand-bg:#D8EDE6;--on-brand:#fff;
+    --bad:#B33A2E;--bad-bg:#F9E6E2;--gold:#A87B2E;--gold-bg:#F4E8CC;
+    --shadow:0 1px 2px rgba(20,30,25,.04),0 6px 20px -10px rgba(20,30,25,.1);
+    --r:12px;--serif:'Fraunces',Georgia,serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+    box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+  }
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#101412;--card:#181D1A;--ink:#EAEDEA;--soft:#A8B2AB;--line:#2A312C;--fill:#222925;
+    --brand:#4BB89F;--brand-2:#6AC4B0;--brand-bg:#1C302B;--on-brand:#0A1411;
+    --gold:#D0A44E;--gold-bg:#372C14;--bad:#E17A6E;--bad-bg:#382320;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px -12px rgba(0,0,0,.55)
+  }}
+  :root[data-theme="dark"]{
+    --bg:#101412;--card:#181D1A;--ink:#EAEDEA;--soft:#A8B2AB;--line:#2A312C;--fill:#222925;
+    --brand:#4BB89F;--brand-2:#6AC4B0;--brand-bg:#1C302B;--on-brand:#0A1411;
+    --gold:#D0A44E;--gold-bg:#372C14;--bad:#E17A6E;--bad-bg:#382320;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px -12px rgba(0,0,0,.55)
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14.5px/1.55 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+  .skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:100;background:var(--card);padding:8px 12px;border-radius:8px}
+
+  /* ---- Top bar ---- */
+  .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .top-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:11px 22px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;white-space:nowrap}
+  .logo{width:28px;height:28px;border-radius:8px;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font:600 11px var(--serif)}
+  nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  nav a{padding:6px 11px;border-radius:8px;color:var(--soft);text-decoration:none;font-weight:500;font-size:13px;white-space:nowrap;transition:color .15s,background .15s}
+  nav a:hover{color:var(--ink);background:var(--fill)}
+  nav a[aria-current="true"]{background:var(--brand-bg);color:var(--brand);font-weight:600}
+  .icon-btn{flex:none;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:15px;transition:border-color .2s}
+  .icon-btn:hover{border-color:var(--brand)}
+
+  /* ---- Layout ---- */
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 22px 80px}
+  body:has(#editBar:not([hidden])) .wrap{padding-bottom:140px}
+
+  /* ---- Hero ---- */
+  .hero{margin-bottom:28px;padding-bottom:8px}
+  .eyebrow{display:flex;align-items:center;gap:9px;margin:0 0 10px;font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+  .eyebrow::before{content:'';width:18px;height:1.5px;border-radius:1px;background:currentColor}
+  h1{font:600 clamp(32px,5.5vw,48px)/1.08 var(--serif);letter-spacing:-.03em;margin:0 0 8px;color:var(--ink)}
+  h1 em{font-style:italic;font-weight:500;color:var(--brand)}
+  .subtitle{color:var(--soft);font-size:15px;max-width:42ch;line-height:1.45}
+
+  /* ---- Section titles ---- */
+  h2{font:600 20px/1.25 var(--serif);letter-spacing:-.015em;margin:0 0 3px;color:var(--ink)}
+  .hint{color:var(--soft);font-size:13px;margin:0 0 16px;line-height:1.45}
+
+  /* ---- Stats ---- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
+  .stat{--c:var(--ink);position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 16px;box-shadow:var(--shadow)}
+  .stat.active{--c:var(--brand)}.stat.inactive{--c:var(--bad)}.stat.health{--c:var(--gold)}
+  .stat-top{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+  .stat-ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:13px;background:color-mix(in srgb,var(--c) 12%,transparent)}
+  .stat .label{font:600 10.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+  .stat .num{font:600 clamp(34px,4.5vw,44px)/1 var(--serif);letter-spacing:-.03em;color:var(--c)}
+  .stat-bar{height:4px;border-radius:99px;background:var(--fill);overflow:hidden;margin:12px 0 6px}
+  .stat-bar i{display:block;height:100%;width:var(--p);background:var(--c);border-radius:99px;transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) .15s both}
+  .stat-sub{font-size:12px;color:var(--soft)}
+
+  /* ---- Cards & columns ---- */
+  .cols{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:22px}
+  @media(min-width:900px){.cols{grid-template-columns:1fr 1fr}}
+  .card{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
+
+  /* ---- Bar charts ---- */
+  .bar-row{display:grid;grid-template-columns:72px 1fr 100px;align-items:center;gap:12px;padding:6px 6px;margin:0 -6px;border-radius:8px;transition:background .15s}
+  .bar-row.wide{grid-template-columns:minmax(110px,160px) 1fr 78px}
+  .bar-row .name{font-weight:600;font-size:13px}
+  .bar-track{height:8px;background:var(--fill);border-radius:99px;overflow:hidden}
+  .bar-fill{height:100%;display:flex}
+  .bar-fill>div{transform-origin:left;animation:grow .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*50ms)}
+  .seg-active{background:var(--brand)}.seg-inactive{background:var(--bad)}
+  .bar-count{font-size:12px;color:var(--soft);text-align:right}
+  .bar-count b{font-size:13.5px;font-weight:700;color:var(--ink)}
+  .clickable{cursor:pointer}.bar-row.clickable:hover{background:var(--fill)}
+  @media(max-width:520px){.bar-row,.bar-row.wide{grid-template-columns:1fr auto;gap:5px 10px}.bar-row .bar-track{grid-column:1/-1;order:3}}
+
+  /* ---- Tarea cards ---- */
+  .tarea-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+  .tarea-card{background:var(--fill);border:1px solid transparent;border-radius:10px;padding:12px 14px;transition:border-color .15s,background .15s}
+  .tarea-card.clickable:hover{border-color:var(--brand);background:var(--card)}
+  .t-name{font-weight:600;font-size:12.5px;color:var(--soft)}.t-count{font:600 24px/1.1 var(--serif);letter-spacing:-.02em;margin:3px 0 2px;color:var(--ink)}.t-split{font-size:11px;color:var(--soft)}
+  #asignPeople{max-height:320px;overflow-y:auto;align-content:start}
+  .person-pill{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--fill);border-radius:8px;padding:7px 11px;font-size:12.5px}
+  .p-meta{color:var(--soft);font-size:11px;white-space:nowrap}
+  .asign-empty{color:var(--soft);padding:8px 0;font-size:13px}
+
+  /* ---- Controls & filters ---- */
+  .controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
+  select,input[type=text],input[type=password]{font:inherit;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 11px;max-width:100%;transition:border-color .15s,box-shadow .15s}
+  select:focus,input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-bg)}
+  .controls input[type=text]{flex:1 1 200px;min-width:150px}
+  .count-note{color:var(--soft);font-size:12.5px;margin-bottom:10px}
+
+  .more-toggle{position:relative}
+  .more-badge{display:inline-grid;place-items:center;min-width:15px;height:15px;padding:0 4px;margin-left:5px;border-radius:99px;background:var(--brand);color:var(--on-brand);font-size:10px;font-weight:700;line-height:1}
+  .more-panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;width:100%;max-height:0;opacity:0;overflow:hidden;transition:max-height .22s ease,opacity .18s,margin .22s}
+  .more-panel.open{max-height:180px;opacity:1;margin-bottom:4px}
+  .more-panel select{width:100%}
+
+  /* ---- Table ---- */
+  .table-wrap{overflow:auto;max-height:540px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;min-width:540px}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{position:sticky;top:0;z-index:1;background:var(--fill);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--soft);font-weight:600}
+  tbody tr{transition:background .12s}tbody tr:hover{background:var(--fill)}
+  tbody tr:last-child td{border-bottom:0}
+  tr.inactive-row td{color:var(--bad)}
+  td.empty{text-align:center;color:var(--soft);padding:36px 16px}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px}
+  .tag.active{background:var(--brand-bg);color:var(--brand)}.tag.inactive{background:var(--bad-bg);color:var(--bad)}
+
+  /* ---- Skeleton ---- */
+  .sk{background:linear-gradient(90deg,var(--fill) 25%,var(--line) 37%,var(--fill) 63%);background-size:400% 100%;animation:sk 1.4s ease infinite;border-radius:8px}
+  @keyframes sk{0%{background-position:100% 0}100%{background-position:0 0}}
+  .sk-stat{height:118px;border-radius:var(--r)}
+  .loading-row td{padding:28px;text-align:center;color:var(--soft)}
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:8px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---- Pagination ---- */
+  .pagination{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+  .pagination .pg-info{color:var(--soft);font-size:12.5px}
+  .pagination .pg-btns{display:flex;align-items:center;gap:6px}
+  .pagination .pg-btns span{font-size:12.5px;color:var(--soft);padding:0 4px}
+
+  /* ---- Mobile table → cards ---- */
+  @media(max-width:680px){
+    .table-wrap{max-height:none;border:0;overflow:visible;background:transparent}
+    table{min-width:0;display:block}
+    thead{display:none}
+    tbody{display:flex;flex-direction:column;gap:10px}
+    tbody tr{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 14px;box-shadow:var(--shadow)}
+    tbody tr td{display:flex;justify-content:space-between;align-items:center;gap:10px;white-space:normal;border-bottom:1px dashed var(--line);padding:9px 0}
+    tbody tr td:last-child{border-bottom:0}
+    tbody tr td::before{content:attr(data-label);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--soft);flex:none}
+    tbody tr td[data-label="#"]{display:none}
+  }
+
+  /* ---- Buttons ---- */
+  .btn{font:inherit;font-size:13px;font-weight:600;padding:8px 13px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:background .15s,border-color .15s}
+  .btn:hover{border-color:color-mix(in srgb,var(--ink) 40%,var(--line))}
+  .btn:active{transform:scale(.98)}
+  .btn.ghost{background:transparent}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+  .btn.primary:hover{background:var(--brand-2);border-color:var(--brand-2)}
+  .btn.primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  #saveBtn:not(:disabled){animation:pulse 1.6s 3}
+  .btn.danger{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,var(--line));background:transparent}
+  .btn.small{padding:4px 9px;font-size:12px}
+  .btn[aria-pressed="true"]{background:var(--brand-bg);border-color:var(--brand);color:var(--brand)}
+  :is(.btn,.icon-btn,nav a,.clickable,.table-wrap):focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+  /* ---- Edit bar ---- */
+  .edit-bar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;width:max-content;max-width:calc(100% - 24px);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:0 12px 36px -8px rgba(0,0,0,.25);animation:barin .35s cubic-bezier(.2,.8,.2,1)}
+  .edit-bar[hidden],th[hidden],td[hidden]{display:none}
+  .save-status{font-size:12px;color:var(--soft)}.save-status:empty{display:none}
+  .save-status.ok{color:var(--brand)}.save-status.err{color:var(--bad)}
+
+  /* ---- Modal ---- */
+  .modal-overlay{position:fixed;inset:0;z-index:60;display:flex;padding:24px 16px;overflow-y:auto;background:rgba(10,14,12,.48);backdrop-filter:blur(4px);animation:fade .18s}
+  .modal-overlay[hidden]{display:none}
+  .modal{margin:auto;width:100%;max-width:520px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 20px 50px -12px rgba(0,0,0,.35);animation:pop .25s cubic-bezier(.2,.85,.3,1.1)}
+  .modal h3,dialog h3{margin:0 0 16px;font:600 18px/1.25 var(--serif);letter-spacing:-.015em}
+  .field{margin-bottom:13px}
+  .field>label{display:block;font-size:11px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+  .field input[type=text],.field input[type=password],.field select{width:100%;background:var(--fill)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .check-row{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}
+  input[type=checkbox]{accent-color:var(--brand);width:15px;height:15px}
+  .asign-checks{display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;max-height:220px;overflow-y:auto;padding:12px;border:1px solid var(--line);border-radius:9px;background:var(--fill)}
+  @media(max-width:420px){.asign-checks,.field-row{grid-template-columns:1fr}}
+  .modal-actions{display:flex;align-items:center;gap:8px;margin-top:18px}
+  dialog{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:24px;width:min(440px,calc(100% - 32px));box-shadow:0 20px 50px -12px rgba(0,0,0,.35)}
+  dialog[open]{animation:pop .25s cubic-bezier(.2,.85,.3,1.1)}
+  dialog::backdrop{background:rgba(10,14,12,.48);backdrop-filter:blur(4px)}
+
+  footer{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:32px;padding-top:16px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
+
+  .brand span:last-child{font-family:var(--serif);font-size:15.5px;letter-spacing:-.01em}
+  @media(max-width:700px){.brand span:last-child{display:none}}
+
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}}
+  @keyframes fade{from{opacity:0}}
+  @keyframes grow{from{transform:scaleX(0)}}
+  @keyframes pop{from{opacity:0;transform:translateY(12px) scale(.97)}}
+  @keyframes barin{from{opacity:0;transform:translate(-50%,16px)}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 45%,transparent)}70%,100%{box-shadow:0 0 0 9px transparent}}
+  .js .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+  /* ---- Toasts ---- */
+  .toast-wrap{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+  .toast{pointer-events:auto;display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;padding:10px 16px;border-radius:99px;box-shadow:0 12px 32px -8px rgba(0,0,0,.3);animation:toastin .22s cubic-bezier(.2,.85,.3,1.1)}
+  .toast.err{background:var(--bad)}.toast.ok{background:var(--brand)}
+  .toast.out{animation:toastout .18s ease forwards}
+  @keyframes toastin{from{opacity:0;transform:translateY(10px) scale(.96)}}
+  @keyframes toastout{to{opacity:0;transform:translateY(6px) scale(.96)}}
+
+  @media print{
+    .top,.edit-bar,.hero,#resumen,#distribucion,#disponibilidad,footer,.controls,.count-note,.pagination,.toast-wrap{display:none!important}
+    body,.wrap{background:#fff!important;padding:0!important;margin:0!important}
+    #listado{border:0!important;box-shadow:none!important;padding:0!important}
+    .table-wrap{max-height:none!important;overflow:visible!important;border:0!important}
+    table{min-width:0!important}
+    thead{display:table-header-group!important}
+    tbody{display:table-row-group!important}
+    tbody tr{display:table-row!important;background:#fff!important;border:0!important;box-shadow:none!important}
+    tbody tr td{display:table-cell!important;border-bottom:1px solid #ccc!important}
+    tbody tr td::before{content:none!important}
+  }
+
+  /* ---- A11y / contrast polish ---- */
+  .hint,.stat-sub,.count-note,.p-meta,.bar-count,.t-split,.pg-info,.save-status,.subtitle{color:var(--soft)}
+  .btn:disabled,.btn.primary:disabled{opacity:.55;cursor:not-allowed}
+  .btn:focus-visible,.icon-btn:focus-visible,nav a:focus-visible,select:focus-visible,input:focus-visible{
+    outline:2px solid var(--brand);outline-offset:2px
+  }
+  .tag.health{background:var(--gold-bg);color:var(--gold)}
+  tr.health-row td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+  tr.inactive-row td{opacity:.92}
+  .name-cell{display:flex;flex-direction:column;gap:2px}
+  .name-cell .badges{display:flex;flex-wrap:wrap;gap:4px}
+  .filter-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+  .filter-chips:empty{display:none}
+  .fchip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;background:var(--brand-bg);color:var(--brand);font-size:12px;font-weight:600;border:1px solid transparent}
+  .fchip button{border:0;background:transparent;color:inherit;cursor:pointer;font-size:14px;line-height:1;padding:0 0 0 2px}
+  .controls-actions{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  @media(max-width:720px){
+    .top-in{padding:10px 14px;gap:8px}
+    nav{order:3;width:100%;margin-left:0;padding-top:4px}
+    .top-in{flex-wrap:wrap}
+    .controls{gap:8px}
+    .controls-actions{width:100%}
+  }
+  .edit-bar .btn.primary-edit{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+  .edit-bar .btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+  .field-error{font-size:11.5px;color:var(--bad);margin-top:4px;display:none}
+  .field.invalid input,.field.invalid select{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad-bg)}
+  .field.invalid .field-error{display:block}
+  .sk-row{height:42px;margin:6px 0;border-radius:8px}
+  .load-error{padding:28px 16px;text-align:center;color:var(--bad)}
+  .load-error button{margin-top:10px}
+  .theme-btn-label{font-size:12px;font-weight:600}
+  @media(max-width:700px){.theme-btn-label{display:none}}
+  .icon-btn.theme{width:auto;padding:0 10px;display:inline-flex;align-items:center;gap:6px;font-size:13px}
+  .tooltip-host{position:relative}
+  .bar-row[title]{cursor:help}
+  #cfgDialog .hint{margin-bottom:12px}
+  .cfg-steps{margin:0 0 14px;padding-left:18px;font-size:12.5px;color:var(--soft);line-height:1.5}
+  .cfg-steps li{margin-bottom:4px}
+  .cfg-steps b{color:var(--ink)}
+
+</style>
+
+</head>
+<body>
+<a class="skip" href="#listado">Ir al listado</a>
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><span class="logo" aria-hidden="true">CB</span><span>Congregación Bordelaguna</span></div>
+    <nav aria-label="Secciones">
+      <a href="#resumen">Resumen</a><a href="#distribucion">Grupos y tareas</a><a href="#disponibilidad">Disponibilidad</a><a href="#listado">Listado</a>
+    </nav>
+    <a class="btn ghost" href="instrucciones.html" style="text-decoration:none;white-space:nowrap">Instrucciones</a>
+    <a class="btn primary" href="programa.html" style="text-decoration:none;white-space:nowrap">Programa</a>
+    <button class="icon-btn theme" id="themeBtn" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema"><span aria-hidden="true">◐</span><span class="theme-btn-label" id="themeLabel">Tema</span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero reveal">
+    <p class="eyebrow">Registro de hermanos</p>
+    <h1>Congregación <em>Bordelaguna</em></h1>
+    <div class="subtitle"><span id="totalSub">106</span> hermanos en 5 grupos · listo para el programa de asignaciones</div>
+  </div>
+
+  <section id="resumen" class="reveal" aria-labelledby="h-res">
+    <p class="eyebrow">Panorama</p>
+    <h2 id="h-res">Resumen</h2>
+    <p class="hint">Cifras clave del registro actual.</p>
+    <div class="stats" id="statsRow"><div class="stat sk sk-stat"></div><div class="stat sk sk-stat"></div><div class="stat sk sk-stat"></div><div class="stat sk sk-stat"></div></div>
+  </section>
+
+  <div class="cols" id="distribucion">
+    <section class="card reveal" aria-labelledby="h-grupo">
+      <p class="eyebrow">Grupos</p>
+      <h2 id="h-grupo">Por grupo</h2>
+      <p class="hint">Toca un grupo para filtrar el listado.</p>
+      <div id="grupoChart"></div>
+    </section>
+    <section class="card reveal" aria-labelledby="h-tarea">
+      <p class="eyebrow">Tareas</p>
+      <h2 id="h-tarea">Por tarea</h2>
+      <p class="hint">Toca una tarea para filtrar el listado.</p>
+      <div class="tarea-grid" id="tareaGrid"></div>
+    </section>
+  </div>
+
+  <div class="cols" id="disponibilidad">
+    <section class="card reveal" aria-labelledby="h-disp">
+      <p class="eyebrow">Cupos</p>
+      <h2 id="h-disp">Disponibilidad por asignación</h2>
+      <p class="hint">Hermanos activos que pueden tomar cada parte.</p>
+      <div id="asignChart"></div>
+    </section>
+    <section class="card reveal" aria-labelledby="h-quien">
+      <p class="eyebrow">Personas</p>
+      <h2 id="h-quien">¿Quién puede tomar una asignación?</h2>
+      <p class="hint">Elige una asignación para ver la lista.</p>
+      <div class="controls"><select id="asignSelect" aria-label="Asignación"></select></div>
+      <div class="count-note" id="asignNote"></div>
+      <div class="tarea-grid" id="asignPeople"></div>
+    </section>
+  </div>
+
+  <section class="card reveal" id="listado" aria-labelledby="h-list">
+    <p class="eyebrow">Directorio</p>
+    <h2 id="h-list">Listado</h2>
+    <p class="hint">Busca y combina filtros para encontrar hermanos.</p>
+
+    <div class="controls" role="search">
+      <input type="search" id="searchBox" placeholder="Buscar por nombre o apellido…" aria-label="Buscar por nombre o apellido" autocomplete="off">
+      <select id="filterGrupo" aria-label="Filtrar por grupo"><option value="">Todos los grupos</option></select>
+      <button class="btn ghost more-toggle" id="moreToggle" type="button" aria-expanded="false" aria-controls="morePanel">Más filtros <span class="more-badge" id="moreBadge" hidden>0</span></button>
+      <button class="btn ghost" id="clearFilters" type="button" aria-label="Limpiar todos los filtros">Limpiar</button>
+      <span style="flex:1"></span>
+      <div class="controls-actions">
+        <button class="btn ghost small" id="exportBtn" type="button" aria-label="Exportar listado filtrado a CSV" title="Descarga el listado filtrado como CSV">⬇️ CSV</button>
+        <button class="btn ghost small" id="printBtn" type="button" aria-label="Imprimir o guardar listado como PDF" title="Imprimir o guardar como PDF">🖨️ PDF</button>
+      </div>
+    </div>
+    <div class="filter-chips" id="filterChips" aria-live="polite"></div>
+    <div class="more-panel" id="morePanel">
+      <select id="filterTarea" aria-label="Tarea"><option value="">Todas las tareas</option></select>
+      <select id="filterGenero" aria-label="Género"><option value="">M y V</option><option value="M">M</option><option value="V">V</option></select>
+      <select id="filterEstado" aria-label="Estado"><option value="">Activos e inactivos</option><option value="activo">Solo activos</option><option value="inactivo">Solo inactivos</option></select>
+      <select id="filterAsign" aria-label="Asignación"><option value="">Cualquier asignación</option></select>
+    </div>
+    <div class="count-note" id="countNote" role="status" aria-live="polite"></div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de hermanos">
+      <table>
+        <thead><tr><th>#</th><th>Nombre</th><th>Tarea</th><th>Grupo</th><th>Género</th><th>Estado</th><th class="edit-col" id="actionsHead" hidden>Acciones</th></tr></thead>
+        <tbody id="tableBody"><tr class="loading-row"><td colspan="7"><div class="sk sk-row" style="max-width:90%;margin:8px auto"></div><div class="sk sk-row" style="max-width:75%;margin:8px auto"></div><div class="sk sk-row" style="max-width:85%;margin:8px auto"></div><p style="margin:12px 0 0;color:var(--soft);font-size:13px"><span class="spinner" aria-hidden="true"></span>Cargando hermanos…</p></td></tr></tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination" hidden>
+      <div class="pg-info" id="pgInfo"></div>
+      <div class="pg-btns">
+        <select id="pageSize" aria-label="Registros por página">
+          <option value="10">10 por página</option>
+          <option value="15" selected>15 por página</option>
+          <option value="25">25 por página</option>
+          <option value="9999">Ver todos</option>
+        </select>
+        <button class="btn ghost small" id="pgPrev" type="button" aria-label="Página anterior">‹</button>
+        <span id="pgLabel"></span>
+        <button class="btn ghost small" id="pgNext" type="button" aria-label="Página siguiente">›</button>
+      </div>
+    </div>
+  </section>
+
+  <footer><span id="footNote"></span> · <button class="btn ghost small" id="cfgBtn" type="button" title="Introduce tu clave de acceso para guardar los cambios de forma permanente">⚙️ Ajustes de guardado</button></footer>
+</main>
+
+<div class="edit-bar" id="editBar" hidden role="toolbar" aria-label="Edición">
+  <button class="btn" id="addBtn" type="button">+ Agregar hermano</button>
+  <button class="btn" id="editModeBtn" type="button" aria-pressed="false" aria-label="Activar o desactivar modo edición">✏️ Edición: off</button>
+  <span class="save-status" id="saveStatus" role="status" aria-live="polite"></span>
+  <button class="btn primary" id="saveBtn" type="button" disabled>Guardar cambios</button>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Agregar hermano</h3>
+    <div class="field" id="fieldNombre">
+      <label for="f_nombre">Nombre <span style="color:var(--bad)">*</span></label>
+      <input type="text" id="f_nombre" placeholder="Apellido, Nombre" required autocomplete="name" aria-describedby="errNombre">
+      <div class="field-error" id="errNombre">Escribe el nombre (ej. Pérez, Ana).</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="f_tarea">Tarea</label>
+        <input type="text" id="f_tarea" list="tareaList" placeholder="PTJ, PNB, AN, SM, PR…">
+      </div>
+      <div class="field">
+        <label for="f_grupo">Grupo</label>
+        <select id="f_grupo">
+          <option value="">—</option>
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="f_genero">Género</label>
+        <select id="f_genero"><option value="M">M</option><option value="V">V</option></select>
+      </div>
+      <div class="field">
+        <label for="f_estado">Estado</label>
+        <select id="f_estado"><option value="activo">Activo</option><option value="inactivo">Inactivo</option></select>
+      </div>
+    </div>
+    <div class="check-row"><input type="checkbox" id="f_salud"><label for="f_salud" style="margin:0;text-transform:none;font-size:12px;">Marcar como "en salud"</label></div>
+    <div class="field">
+      <label>Asignaciones disponibles (SI)</label>
+      <div class="asign-checks" id="f_asign" role="group" aria-label="Asignaciones disponibles"></div>
+    </div>
+    <datalist id="tareaList"></datalist>
+    <div class="modal-actions">
+      <button class="btn danger" id="deleteBtn" type="button" hidden>Eliminar hermano</button>
+      <span style="flex:1"></span>
+      <button class="btn ghost" id="cancelBtn" type="button">Cancelar</button>
+      <button class="btn primary" id="saveModalBtn" type="button" style="opacity:1;">Guardar en la lista</button>
+    </div>
+  </div>
+</div>
+
+
+<dialog id="cfgDialog" aria-labelledby="cfgTitle">
+  <h3 id="cfgTitle">Ajustes de guardado</h3>
+  <p class="hint">Para guardar cambios de forma permanente necesitas un token de GitHub con permiso de escritura en este repositorio. Se guarda solo en este dispositivo.</p>
+  <ol class="cfg-steps">
+    <li>En GitHub: <b>Settings → Developer settings → Personal access tokens</b> (fine-grained).</li>
+    <li>Permiso del repositorio: <b>Contents → Read and write</b>.</li>
+    <li>Pega el token abajo. Usuario y repo suelen autocompletarse en GitHub Pages.</li>
+    <li>Si falla el guardado, usa <b>Exportar CSV</b> como respaldo.</li>
+  </ol>
+  <div class="field"><label for="c_token">Clave de acceso (token de GitHub)</label><input type="password" id="c_token" autocomplete="off" placeholder="Token fine-grained · permiso Contents: Read and write"></div>
+  <div class="field-row">
+    <div class="field"><label for="c_owner">Usuario</label><input type="text" id="c_owner"></div>
+    <div class="field"><label for="c_repo">Repositorio</label><input type="text" id="c_repo"></div>
+  </div>
+  <div class="field"><label for="c_branch">Rama</label><input type="text" id="c_branch"></div>
+  <div class="modal-actions">
+    <button class="btn danger" id="cfgClear" type="button">Desconectar</button>
+    <span style="flex:1"></span>
+    <button class="btn ghost" id="cfgCancel" type="button">Cancelar</button>
+    <button class="btn primary" id="cfgSave" type="button">Guardar</button>
+  </div>
+</dialog>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+'use strict';
+const ASIGN_COLS = [
+  {id:'PRESIDENCIA', label:'Presidencia'},
+  {id:'ORACION', label:'Oración'},
+  {id:'DISCURSO_TESORO_BIBLIA', label:'Discurso Tesoro de la Biblia'},
+  {id:'PERLAS_ESCONDIDAS', label:'Perlas escondidas'},
+  {id:'LECTURA_BIBLIA', label:'Lectura de la Biblia'},
+  {id:'MM_1', label:'Mejores Maestros N°1'},
+  {id:'MM_2', label:'Mejores Maestros N°2'},
+  {id:'MM_3', label:'Mejores Maestros N°3'},
+  {id:'DISCURSO_MM', label:'Discurso Mejores Maestros'},
+  {id:'DISCURSO_VIDA_CRISTIANA', label:'Discurso Vida Cristiana'},
+  {id:'NECESIDADES_CONGREGACION', label:'Necesidades de la Congregación'},
+  {id:'ESTUDIO_BIBLICO', label:'Conductor Estudio Bíblico'},
+  {id:'LECTOR_ESTUDIO_BIBLICO', label:'Lector Estudio Bíblico'}
+];
+const GRUPOS = ['1','2','3','4','5'];
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fold = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const nameMatch = (name, q) => { const n = fold(name), parts = fold(q).split(/\s+/).filter(Boolean); return !parts.length || parts.every(p => n.includes(p)); };
+
+// ---------- Config (por dispositivo) ----------
+const CFG_KEY = 'hermanos.cfg';
+function guessRepo() {
+  const h = location.hostname;
+  return h.endsWith('.github.io') ? {owner: h.split('.')[0], repo: location.pathname.split('/')[1] || h} : {};
+}
+function getCfg() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(CFG_KEY) || '{}'); } catch {}
+  return {branch: 'main', path: 'data.json', ...guessRepo(), ...saved};
+}
+function setCfg(c) { try { localStorage.setItem(CFG_KEY, JSON.stringify(c)); } catch {} }
+
+// ---------- GitHub API ----------
+function b64enc(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, '')), ch => ch.charCodeAt(0)));
+
+async function gh(method, body) {
+  const c = getCfg();
+  const url = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/${c.path}` + (method === 'GET' ? `?ref=${encodeURIComponent(c.branch)}` : '');
+  const res = await fetch(url, {
+    method, cache: 'no-store',
+    headers: {Accept: 'application/vnd.github+json', Authorization: `Bearer ${c.token}`, 'X-GitHub-Api-Version': '2022-11-28'},
+    body: body && JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const msg = {401: 'Token inválido o vencido', 403: 'Token sin permiso de escritura', 404: 'Repositorio o archivo no encontrado', 409: 'Conflicto: recarga la página', 422: 'Conflicto: recarga la página'}[res.status];
+    throw new Error(msg || `Error ${res.status}`);
+  }
+  return res.json();
+}
+
+// ---------- Estado ----------
+let rows = [], sha = null, dirty = false, editMode = false, editing = null;
+
+const toRows = list => list.map(r => ({
+  ...r, grupo: r.grupo ?? null,
+  asign: Object.fromEntries(ASIGN_COLS.map(c => [c.id, (r.asign || []).includes(c.id)]))
+}));
+const serialize = () => '{\n "rows": [\n' + rows.map(r => '  ' + JSON.stringify({
+  ...r, asign: ASIGN_COLS.filter(c => r.asign[c.id]).map(c => c.id)
+})).join(',\n') + '\n ]\n}\n';
+
+async function load() {
+  const c = getCfg();
+  if (c.token) {
+    try {
+      const r = await gh('GET');
+      sha = r.sha;
+      return JSON.parse(b64dec(r.content));
+    } catch (e) { setStatus(e.message, 'err'); }
+  }
+  const res = await fetch(`data.json?t=${Date.now()}`, {cache: 'no-store'});
+  if (!res.ok) throw new Error('No se pudo cargar data.json');
+  return res.json();
+}
+
+function setStatus(msg, cls = '') { const s = $('saveStatus'); s.textContent = msg; s.className = 'save-status ' + cls; }
+function markDirty() { dirty = true; $('saveBtn').disabled = false; setStatus('Cambios sin guardar'); renderAll(); }
+
+// ---------- Toasts ----------
+function toast(msg, type = '') {
+  const wrap = $('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast' + (type ? ' ' + type : '');
+  el.textContent = msg;
+  wrap.appendChild(el);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 220); }, 3200);
+}
+
+// ---------- Paginación ----------
+let page = 1, pageSize = 15, printMode = false;
+
+// ---------- Render ----------
+const fmt = n => n.toLocaleString('es-CL', {maximumFractionDigits: 1});
+const stat = (cls, icon, n, label, sub) => {
+  const pct = rows.length ? n / rows.length * 100 : 0;
+  return `<div class="stat ${cls}" style="--p:${pct.toFixed(1)}%"><div class="stat-top"><span class="stat-ic" aria-hidden="true">${icon}</span><span class="label">${label}</span></div>
+    <div class="num">${n}</div><div class="stat-bar"><i></i></div><div class="stat-sub">${sub ?? fmt(pct) + '% del total'}</div></div>`;
+};
+
+function renderStats() {
+  const inact = rows.filter(r => r.inactivo).length;
+  $('statsRow').innerHTML = stat('total', '👥', rows.length, 'Total hermanos', `Distribuidos en ${GRUPOS.length} grupos`) +
+    stat('active', '✅', rows.length - inact, 'Activos') + stat('inactive', '⏸️', inact, 'Inactivos') +
+    stat('health', '🩺', rows.filter(r => r.salud).length, 'En salud');
+  $('totalSub').textContent = rows.length;
+  $('footNote').textContent = `Datos cargados desde la planilla proporcionada · ${rows.length} registros`;
+  animateNums();
+}
+
+function renderCharts() {
+  const max = Math.max(1, ...GRUPOS.map(g => rows.filter(r => r.grupo === g).length));
+  $('grupoChart').innerHTML = GRUPOS.map(g => {
+    const gr = rows.filter(r => r.grupo === g), inact = gr.filter(r => r.inactivo).length, act = gr.length - inact;
+    return `<div class="bar-row clickable" role="button" tabindex="0" data-grupo="${g}" title="Grupo ${g}: ${act} activos · ${inact} inactivos · ${gr.length} en total. Toca para filtrar."><div class="name">Grupo ${g}</div>
+      <div class="bar-track"><div class="bar-fill"><div class="seg-active" style="width:${act / max * 100}%"></div><div class="seg-inactive" style="width:${inact / max * 100}%"></div></div></div>
+      <div class="bar-count"><b>${gr.length}</b> (${inact} inact.)</div></div>`;
+  }).join('');
+
+  const tc = {};
+  rows.forEach(r => { const t = tc[r.tarea] ??= {total: 0, M: 0, V: 0}; t.total++; t[r.genero]++; });
+  $('tareaGrid').innerHTML = tareas().map(t => `<div class="tarea-card clickable" role="button" tabindex="0" data-tarea="${esc(t)}" title="Filtrar listado por esta tarea"><div class="t-name">${esc(t)}</div>
+    <div class="t-count">${tc[t].total}</div><div class="t-split">${tc[t].M} mujeres · ${tc[t].V} varones</div></div>`).join('');
+
+  const act = rows.filter(r => !r.inactivo);
+  const counts = ASIGN_COLS.map(c => ({...c, disp: act.filter(r => r.asign[c.id]).length, all: rows.filter(r => r.asign[c.id]).length}))
+    .sort((a, b) => b.disp - a.disp);
+  const m = Math.max(1, ...counts.map(a => a.disp));
+  $('asignChart').innerHTML = counts.map(a => `<div class="bar-row wide"><div class="name">${a.label}</div>
+    <div class="bar-track"><div class="bar-fill"><div class="seg-active" style="width:${a.disp / m * 100}%"></div></div></div>
+    <div class="bar-count"><b>${a.disp}</b>${a.all > a.disp ? ` (+${a.all - a.disp} inactivo)` : ''}</div></div>`).join('');
+}
+
+function tareas() {
+  const c = {};
+  rows.forEach(r => c[r.tarea] = (c[r.tarea] || 0) + 1);
+  return Object.keys(c).sort((a, b) => c[b] - c[a]);
+}
+
+function renderAsignPeople() {
+  const id = $('asignSelect').value, col = ASIGN_COLS.find(c => c.id === id);
+  const ok = rows.filter(r => r.asign[id] && !r.inactivo), off = rows.filter(r => r.asign[id] && r.inactivo).length;
+  $('asignNote').textContent = `${ok.length} activos disponibles para "${col.label}"` + (off ? ` · ${off} inactivos (no listados)` : '');
+  $('asignPeople').innerHTML = ok.length
+    ? ok.sort((a, b) => a.nombre.localeCompare(b.nombre)).map(r => `<div class="person-pill"><span>${esc(r.nombre)}</span><span class="p-meta">Grupo ${r.grupo || '—'} · ${r.genero}</span></div>`).join('')
+    : '<div class="asign-empty">Ningún hermano activo tiene esta asignación marcada.</div>';
+}
+
+function fillTareaFilter() {
+  const sel = $('filterTarea'), cur = sel.value;
+  sel.innerHTML = '<option value="">Todas las tareas</option>' + tareas().map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join('');
+  sel.value = cur;
+  $('tareaList').innerHTML = tareas().map(t => `<option value="${esc(t)}">`).join('');
+}
+
+function currentFilters() {
+  return {
+    q: $('searchBox').value.trim().toLowerCase(), g: $('filterGrupo').value, t: $('filterTarea').value,
+    gen: $('filterGenero').value, est: $('filterEstado').value, asg: $('filterAsign').value
+  };
+}
+function filteredRows() {
+  const { q, g, t, gen, est, asg } = currentFilters();
+  return rows.filter(r =>
+    (!q || nameMatch(r.nombre, q)) && (!g || r.grupo === g) && (!t || r.tarea === t) && (!gen || r.genero === gen) &&
+    (est !== 'activo' || !r.inactivo) && (est !== 'inactivo' || r.inactivo) && (!asg || r.asign[asg]));
+}
+function rowHtml(r) {
+  const badges = [
+    r.inactivo ? '<span class="tag inactive">Inactivo</span>' : '',
+    r.salud ? '<span class="tag health">En salud</span>' : ''
+  ].filter(Boolean).join('');
+  const cls = [r.inactivo ? 'inactive-row' : '', r.salud && !r.inactivo ? 'health-row' : ''].filter(Boolean).join(' ');
+  return `<tr class="${cls}">
+    <td data-label="#">${r.num}</td>
+    <td data-label="Nombre"><div class="name-cell"><span>${esc(r.nombre)}</span>${badges ? `<span class="badges">${badges}</span>` : ''}</div></td>
+    <td data-label="Tarea">${esc(r.tarea)}</td>
+    <td data-label="Grupo">${r.grupo || '—'}</td><td data-label="Género">${r.genero}</td>
+    <td data-label="Estado"><span class="tag ${r.inactivo ? 'inactive' : 'active'}">${r.inactivo ? 'Inactivo' : 'Activo'}</span></td>
+    ${editMode ? `<td class="edit-col" data-label="Acciones"><button class="btn small" type="button" data-edit="${r.num}" aria-label="Editar ${esc(r.nombre)}">Editar</button></td>` : ''}</tr>`;
+}
+function renderTable() {
+  const list = filteredRows();
+  $('actionsHead').hidden = !editMode;
+
+  const size = printMode ? Math.max(1, list.length) : pageSize;
+  const totalPages = Math.max(1, Math.ceil(list.length / size));
+  if (page > totalPages) page = totalPages;
+  if (page < 1) page = 1;
+  const start = (page - 1) * size, pageRows = list.slice(start, start + size);
+
+  $('countNote').innerHTML = list.length
+    ? `Mostrando <b>${start + 1}–${start + pageRows.length}</b> de <b>${list.length}</b> hermanos filtrados (${rows.length} en total)`
+    : `0 de ${rows.length} hermanos`;
+  $('tableBody').innerHTML = pageRows.map(rowHtml).join('') || '<tr><td class="empty" colspan="7">Sin resultados con estos filtros.</td></tr>';
+
+  $('pagination').hidden = printMode || list.length === 0;
+  if (!printMode) {
+    $('pgInfo').textContent = `Página ${page} de ${totalPages}`;
+    $('pgLabel').textContent = `${page} / ${totalPages}`;
+    $('pgPrev').disabled = page <= 1;
+    $('pgNext').disabled = page >= totalPages;
+  }
+}
+function resetPage() { page = 1; renderTable(); }
+
+function renderAll() { renderStats(); renderCharts(); fillTareaFilter(); renderAsignPeople(); renderTable(); decorate(); }
+
+// ---------- Modal de hermano ----------
+function openModal(r) {
+  editing = r || null;
+  $('modalTitle').textContent = r ? 'Editar hermano' : 'Agregar hermano';
+  $('f_nombre').value = r?.nombre ?? '';
+  $('f_tarea').value = r?.tarea ?? '';
+  $('f_grupo').value = r?.grupo ?? '';
+  $('f_genero').value = r?.genero ?? 'M';
+  $('f_estado').value = r?.inactivo ? 'inactivo' : 'activo';
+  $('f_salud').checked = !!r?.salud;
+  $('deleteBtn').hidden = !r;
+  $('f_asign').innerHTML = ASIGN_COLS.map(c =>
+    `<label class="check-row"><input type="checkbox" value="${c.id}" ${r?.asign[c.id] ? 'checked' : ''}> ${c.label}</label>`).join('');
+  $('modalOverlay').hidden = false;
+  $('f_nombre').focus();
+}
+const closeModal = () => { $('modalOverlay').hidden = true; editing = null; };
+
+$('saveModalBtn').onclick = () => {
+  const nombre = $('f_nombre').value.trim();
+  const field = $('fieldNombre');
+  if (!nombre || nombre.length < 2) {
+    field.classList.add('invalid');
+    $('f_nombre').focus();
+    return;
+  }
+  field.classList.remove('invalid');
+  const vals = {
+    nombre, tarea: $('f_tarea').value.trim().toUpperCase() || '—', grupo: $('f_grupo').value || null, genero: $('f_genero').value,
+    inactivo: $('f_estado').value === 'inactivo', salud: $('f_salud').checked,
+    asign: Object.fromEntries([...$('f_asign').querySelectorAll('input')].map(i => [i.value, i.checked]))
+  };
+  const wasEditing = !!editing;
+  if (editing) Object.assign(editing, vals);
+  else rows.push({num: Math.max(0, ...rows.map(r => r.num)) + 1, ...vals});
+  closeModal(); markDirty();
+  toast(wasEditing ? `Cambios guardados para ${vals.nombre} ✓` : `${vals.nombre} agregado con éxito ✓`, 'ok');
+};
+$('f_nombre').addEventListener('input', () => { if ($('f_nombre').value.trim().length >= 2) $('fieldNombre').classList.remove('invalid'); });
+$('deleteBtn').onclick = () => {
+  if (editing && confirm(`¿Eliminar a ${editing.nombre}?`)) {
+    const nombre = editing.nombre;
+    rows = rows.filter(r => r !== editing); closeModal(); markDirty();
+    toast(`${nombre} eliminado de la lista`);
+  }
+};
+$('cancelBtn').onclick = closeModal;
+$('modalOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('modalOverlay').hidden) closeModal(); });
+$('tableBody').addEventListener('click', e => {
+  const b = e.target.closest('[data-edit]');
+  if (b) openModal(rows.find(r => r.num === +b.dataset.edit));
+});
+
+// ---------- Barra de edición ----------
+$('addBtn').onclick = () => openModal(null);
+$('editModeBtn').onclick = () => {
+  editMode = !editMode;
+  $('editModeBtn').textContent = editMode ? '✏️ Edición: on' : '✏️ Edición: off';
+  $('editModeBtn').setAttribute('aria-pressed', editMode);
+  $('editModeBtn').classList.toggle('primary-edit', editMode);
+  renderTable();
+  toast(editMode ? 'Modo edición activado — puedes editar filas' : 'Modo edición desactivado', editMode ? 'ok' : '');
+};
+$('saveBtn').onclick = async () => {
+  $('saveBtn').disabled = true; setStatus('Guardando…');
+  try {
+    if (!sha) sha = (await gh('GET')).sha;
+    const r = await gh('PUT', {message: `Actualiza registro (${new Date().toISOString().slice(0, 16)})`, content: b64enc(serialize()), sha, branch: getCfg().branch});
+    sha = r.content.sha; dirty = false;
+    setStatus('Guardado ✓ (el sitio público se actualiza en ~1 min)', 'ok');
+    toast('Cambios guardados en GitHub ✓', 'ok');
+  } catch (e) { setStatus(e.message, 'err'); $('saveBtn').disabled = false; toast('No se pudo guardar: ' + e.message, 'err'); }
+};
+window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+// ---------- Diálogo de conexión ----------
+$('cfgBtn').onclick = () => {
+  const c = getCfg();
+  $('c_token').value = c.token || ''; $('c_owner').value = c.owner || ''; $('c_repo').value = c.repo || ''; $('c_branch').value = c.branch;
+  $('cfgDialog').showModal();
+};
+$('cfgCancel').onclick = () => $('cfgDialog').close();
+$('cfgClear').onclick = () => { try { localStorage.removeItem(CFG_KEY); } catch {} location.reload(); };
+$('cfgSave').onclick = () => {
+  setCfg({token: $('c_token').value.trim(), owner: $('c_owner').value.trim(), repo: $('c_repo').value.trim(), branch: $('c_branch').value.trim() || 'main'});
+  location.reload();
+};
+
+// ---------- Filtros ----------
+$('asignSelect').innerHTML = ASIGN_COLS.map(c => `<option value="${c.id}">${c.label}</option>`).join('');
+$('filterAsign').innerHTML = '<option value="">Cualquier asignación</option>' + $('asignSelect').innerHTML;
+$('filterGrupo').innerHTML += GRUPOS.map(g => `<option value="${g}">Grupo ${g}</option>`).join('');
+$('asignSelect').addEventListener('change', renderAsignPeople);
+function updateMoreBadge() {
+  const n = ['filterTarea', 'filterGenero', 'filterEstado', 'filterAsign'].filter(id => $(id).value).length;
+  $('moreBadge').hidden = !n; $('moreBadge').textContent = n;
+  renderFilterChips();
+}
+function renderFilterChips() {
+  const host = $('filterChips');
+  if (!host) return;
+  const chips = [];
+  const q = $('searchBox').value.trim();
+  if (q) chips.push({key: 'searchBox', label: 'Buscar: ' + q});
+  if ($('filterGrupo').value) chips.push({key: 'filterGrupo', label: 'Grupo ' + $('filterGrupo').value});
+  if ($('filterTarea').value) chips.push({key: 'filterTarea', label: 'Tarea: ' + $('filterTarea').value});
+  if ($('filterGenero').value) chips.push({key: 'filterGenero', label: $('filterGenero').value === 'M' ? 'Mujeres' : 'Varones'});
+  if ($('filterEstado').value) chips.push({key: 'filterEstado', label: $('filterEstado').value === 'activo' ? 'Solo activos' : 'Solo inactivos'});
+  if ($('filterAsign').value) {
+    const opt = $('filterAsign').selectedOptions[0];
+    chips.push({key: 'filterAsign', label: opt ? opt.textContent : 'Asignación'});
+  }
+  host.innerHTML = chips.map(c => `<span class="fchip">${esc(c.label)}<button type="button" data-clear="${c.key}" aria-label="Quitar filtro ${esc(c.label)}">×</button></span>`).join('');
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-clear]');
+  if (!b || !b.closest('#filterChips')) return;
+  const id = b.dataset.clear;
+  if ($(id)) $(id).value = '';
+  updateMoreBadge(); resetPage();
+});
+['searchBox', 'filterGrupo', 'filterTarea', 'filterGenero', 'filterEstado', 'filterAsign'].forEach(id => {
+  $(id).addEventListener('input', () => { updateMoreBadge(); resetPage(); });
+  $(id).addEventListener('change', () => { updateMoreBadge(); resetPage(); });
+});
+$('moreToggle').onclick = () => {
+  const open = $('morePanel').classList.toggle('open');
+  $('moreToggle').setAttribute('aria-expanded', open);
+};
+$('pageSize').onchange = () => { pageSize = +$('pageSize').value; resetPage(); };
+$('pgPrev').onclick = () => { page--; renderTable(); };
+$('pgNext').onclick = () => { page++; renderTable(); };
+
+// ---------- Exportar / imprimir ----------
+function csvCell(v) { const s = String(v ?? ''); return /[",\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+$('exportBtn').onclick = () => {
+  const list = filteredRows();
+  const head = ['#', 'Nombre', 'Tarea', 'Grupo', 'Género', 'Estado', 'En salud'];
+  const body = list.map(r => [r.num, r.nombre, r.tarea, r.grupo || '', r.genero, r.inactivo ? 'Inactivo' : 'Activo', r.salud ? 'Sí' : 'No']);
+  const csv = '\uFEFF' + [head, ...body].map(row => row.map(csvCell).join(';')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = `hermanos_${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+  toast(`Exportados ${list.length} hermanos a CSV ✓`, 'ok');
+};
+$('printBtn').onclick = () => { printMode = true; renderTable(); requestAnimationFrame(() => window.print()); };
+window.addEventListener('afterprint', () => { printMode = false; renderTable(); });
+
+
+// ---------- Interfaz: animaciones y navegación ----------
+const prevNums = [];
+function animateNums() {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('#statsRow .num').forEach((el, i) => {
+    const to = +el.textContent, from = prevNums[i] ?? 0;
+    prevNums[i] = to;
+    if (reduce || from === to) return;
+    const t0 = performance.now();
+    (function tick(t) {
+      const p = Math.min(1, (t - t0) / 700);
+      el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  });
+}
+function decorate() {
+  ['grupoChart', 'asignChart', 'tareaGrid'].forEach(id => [...$(id).children].forEach((el, i) => el.style.setProperty('--i', i)));
+}
+function goFilter(b) {
+  if (b.dataset.grupo) $('filterGrupo').value = b.dataset.grupo;
+  if (b.dataset.tarea) {
+    $('filterTarea').value = b.dataset.tarea;
+    $('morePanel').classList.add('open'); $('moreToggle').setAttribute('aria-expanded', 'true');
+  }
+  updateMoreBadge(); resetPage();
+  $('listado').scrollIntoView({behavior: 'smooth'});
+}
+document.addEventListener('click', e => { const b = e.target.closest('.clickable'); if (b) goFilter(b); });
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList?.contains('clickable')) { e.preventDefault(); goFilter(e.target); }
+});
+$('clearFilters').onclick = () => {
+  ['searchBox', 'filterGrupo', 'filterTarea', 'filterGenero', 'filterEstado', 'filterAsign'].forEach(id => $(id).value = '');
+  updateMoreBadge(); resetPage();
+};
+function syncThemeLabel() {
+  const r = document.documentElement;
+  const cur = r.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const lab = $('themeLabel');
+  if (lab) lab.textContent = cur === 'dark' ? 'Claro' : 'Oscuro';
+  $('themeBtn').setAttribute('aria-label', cur === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+}
+$('themeBtn').onclick = () => {
+  const r = document.documentElement;
+  const cur = r.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  r.dataset.theme = cur === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('hermanos.theme', r.dataset.theme); } catch {}
+  syncThemeLabel();
+};
+syncThemeLabel();
+const revealIO = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
+}), {threshold: 0.05});
+document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+const navLinks = [...document.querySelectorAll('nav a')];
+const spyIO = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) navLinks.forEach(a => a.setAttribute('aria-current', a.hash === '#' + e.target.id));
+}), {rootMargin: '-40% 0px -55% 0px'});
+navLinks.forEach(a => { const s = document.querySelector(a.hash); if (s) spyIO.observe(s); });
+
+// ---------- Inicio ----------
+(async () => {
+  try {
+    rows = toRows((await load()).rows);
+    $('editBar').hidden = !getCfg().token;
+    updateMoreBadge();
+    renderAll();
+  } catch (e) {
+    $('statsRow').innerHTML = '';
+    $('tableBody').innerHTML = `<tr><td colspan="7"><div class="load-error"><strong>No se pudo cargar el registro</strong><br>${esc(e.message)}<br><button class="btn primary" type="button" id="retryLoad">Reintentar</button></div></td></tr>`;
+    $('countNote').textContent = e.message;
+    const btn = $('retryLoad');
+    if (btn) btn.onclick = () => location.reload();
+  }
+  // PWA: service worker opcional
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>
