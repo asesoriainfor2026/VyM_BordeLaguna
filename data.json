@@ -1,3 +1,5 @@
 {
- "rows": []
+ "rows": [
+  {"num":1,"nombre":"Luis Alberto Garcia","tarea":"AN","grupo":"6","genero":"V","inactivo":false,"salud":false,"asign":["PRESIDENCIA","ORACION","DISCURSO_TESORO_BIBLIA","NECESIDADES_CONGREGACION","ESTUDIO_BIBLICO"]}
+ ]
 }
