@@ -301,7 +301,7 @@
   <div class="hero reveal">
     <p class="eyebrow">Registro de hermanos</p>
     <h1>Congregación <em>Bordelaguna</em></h1>
-    <div class="subtitle"><span id="totalSub">106</span> hermanos en 5 grupos · listo para el programa de asignaciones</div>
+    <div class="subtitle"><span id="totalSub">0</span> hermanos en <span id="gruposSub">6</span> grupos · listo para el programa de asignaciones</div>
   </div>
 
   <section id="resumen" class="reveal" aria-labelledby="h-res">
@@ -410,13 +410,21 @@
     <div class="field-row">
       <div class="field">
         <label for="f_tarea">Tarea</label>
-        <input type="text" id="f_tarea" list="tareaList" placeholder="PTJ, PNB, AN, SM, PR…">
+        <select id="f_tarea">
+          <option value="">—</option>
+          <option value="AN">AN · Anciano</option>
+          <option value="SM">SM · Siervo ministerial</option>
+          <option value="PR">PR · Precursor regular</option>
+          <option value="PA">PA · Precursor auxiliar</option>
+          <option value="PB">PB · Publicador bautizado</option>
+          <option value="PNB">PNB · Publicador no bautizado</option>
+        </select>
       </div>
       <div class="field">
         <label for="f_grupo">Grupo</label>
         <select id="f_grupo">
           <option value="">—</option>
-          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
         </select>
       </div>
     </div>
@@ -488,7 +496,8 @@ const ASIGN_COLS = [
   {id:'ESTUDIO_BIBLICO', label:'Conductor Estudio Bíblico'},
   {id:'LECTOR_ESTUDIO_BIBLICO', label:'Lector Estudio Bíblico'}
 ];
-const GRUPOS = ['1','2','3','4','5'];
+const GRUPOS = ['1','2','3','4','5','6'];
+const TAREAS = ['AN','SM','PR','PA','PB','PNB'];
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fold = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -586,6 +595,7 @@ function renderStats() {
     stat('active', '✅', rows.length - inact, 'Activos') + stat('inactive', '⏸️', inact, 'Inactivos') +
     stat('health', '🩺', rows.filter(r => r.salud).length, 'En salud');
   $('totalSub').textContent = rows.length;
+  const gs = $('gruposSub'); if (gs) gs.textContent = GRUPOS.length;
   $('footNote').textContent = `Datos cargados desde la planilla proporcionada · ${rows.length} registros`;
   animateNums();
 }
@@ -628,11 +638,23 @@ function renderAsignPeople() {
     : '<div class="asign-empty">Ningún hermano activo tiene esta asignación marcada.</div>';
 }
 
+function allTareas() {
+  const fromData = tareas();
+  const set = new Set([...TAREAS, ...fromData]);
+  return [...set].sort((a, b) => {
+    const ia = TAREAS.indexOf(a), ib = TAREAS.indexOf(b);
+    if (ia >= 0 && ib >= 0) return ia - ib;
+    if (ia >= 0) return -1;
+    if (ib >= 0) return 1;
+    return a.localeCompare(b);
+  });
+}
 function fillTareaFilter() {
   const sel = $('filterTarea'), cur = sel.value;
-  sel.innerHTML = '<option value="">Todas las tareas</option>' + tareas().map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join('');
+  sel.innerHTML = '<option value="">Todas las tareas</option>' + allTareas().map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join('');
   sel.value = cur;
-  $('tareaList').innerHTML = tareas().map(t => `<option value="${esc(t)}">`).join('');
+  const dl = $('tareaList');
+  if (dl) dl.innerHTML = allTareas().map(t => `<option value="${esc(t)}">`).join('');
 }
 
 function currentFilters() {
@@ -693,7 +715,14 @@ function openModal(r) {
   editing = r || null;
   $('modalTitle').textContent = r ? 'Editar hermano' : 'Agregar hermano';
   $('f_nombre').value = r?.nombre ?? '';
-  $('f_tarea').value = r?.tarea ?? '';
+  const ft = $('f_tarea');
+  const tv = (r?.tarea ?? '').toUpperCase();
+  if (tv && ![...ft.options].some(o => o.value === tv)) {
+    const o = document.createElement('option');
+    o.value = tv; o.textContent = tv;
+    ft.appendChild(o);
+  }
+  ft.value = tv || '';
   $('f_grupo').value = r?.grupo ?? '';
   $('f_genero').value = r?.genero ?? 'M';
   $('f_estado').value = r?.inactivo ? 'inactivo' : 'activo';
