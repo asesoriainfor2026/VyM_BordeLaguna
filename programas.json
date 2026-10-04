@@ -127,7 +127,8 @@
        "ref": "",
        "desc": "wcg cap. 15."
       }
-     ]
+     ],
+     "seg": {}
     },
     {
      "special": "",
@@ -253,7 +254,8 @@
        "ref": "",
        "desc": "wcg cap. 16."
       }
-     ]
+     ],
+     "seg": {}
     },
     {
      "special": "",
@@ -379,7 +381,8 @@
        "ref": "",
        "desc": "wcg cap. 17."
       }
-     ]
+     ],
+     "seg": {}
     },
     {
      "special": "",
@@ -505,7 +508,8 @@
        "ref": "",
        "desc": "wcg cap. 18."
       }
-     ]
+     ],
+     "seg": {}
     },
     {
      "special": "",
@@ -631,7 +635,8 @@
        "ref": "",
        "desc": "wcg cap. 19."
       }
-     ]
+     ],
+     "seg": {}
     }
    ]
   },
@@ -762,7 +767,14 @@
        "ref": "",
        "desc": "wcg cap. 20."
       }
-     ]
+     ],
+     "seg": {
+      "presi": {
+       "e": "no",
+       "r": "Eduardo Benavides",
+       "n": "FLOJERA"
+      }
+     }
     },
     {
      "special": "",
@@ -888,7 +900,8 @@
        "ref": "",
        "desc": "wcg cap. 21."
       }
-     ]
+     ],
+     "seg": {}
     },
     {
      "special": "",
@@ -1014,7 +1027,8 @@
        "ref": "",
        "desc": "wcg introducción a la sección 2, línea de tiempo y cap. 22."
       }
-     ]
+     ],
+     "seg": {}
     },
     {
      "special": "",
@@ -1140,7 +1154,8 @@
        "ref": "",
        "desc": "wcg cap. 23."
       }
-     ]
+     ],
+     "seg": {}
     }
    ]
   }
